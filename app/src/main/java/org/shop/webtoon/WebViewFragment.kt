@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import org.shop.webtoon.databinding.FragmentWebViewBinding
 
@@ -23,8 +22,16 @@ class WebViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.webView.webViewClient = WebViewClient()
+        binding.webView.webViewClient = WebtoonWebViewClient(binding.progressBar)
         binding.webView.settings.javaScriptEnabled = true
-        binding.webView.loadUrl("https://www.google.com")
+        binding.webView.loadUrl("https://comic.naver.com/webtoon/detail?titleId=783052&no=114&week=mon")
+    }
+
+    fun canGoBack(): Boolean {
+        return binding.webView.canGoBack()
+    }
+
+    fun goBack() {
+        binding.webView.goBack()
     }
 }
